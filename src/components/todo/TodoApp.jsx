@@ -9,7 +9,8 @@ class TodoApp extends Component{
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
-                            <Route path="/welcome" component={WelcomeComponent}/>
+                            <Route path="/welcome/:name" component={WelcomeComponent}/>
+                            <Route path="/todoes" component={TodoesComponent}/>
                             <Route component={BadUrlPage}/>
                         </Switch>
                     </>
@@ -17,6 +18,40 @@ class TodoApp extends Component{
 
             </div>
         );
+    }
+}
+class TodoesComponent extends Component{
+    constructor(){
+        super();
+        this.state={
+            todoes:[
+                {id:1,description:'learn react'},
+                {id:2,description:'learn bootstrap'},
+                {id:3,description:'learn programming'}
+            ]
+        }        
+    }
+    render(){
+        return <div>
+            <table>
+                <thead>
+                    <th>id</th>
+                    <th>description</th>
+                </thead>
+                <tbody>
+                        {
+                            this.state.todoes.map(item=>{
+                                    return  <tr>
+                                                <td>{item.id}</td>
+                                                <td>{item.description}</td>
+                                            </tr>
+                                    }
+                             )
+                        }
+                </tbody>
+                
+            </table>
+            </div>
     }
 }
 class BadUrlPage extends Component{
@@ -27,13 +62,13 @@ class BadUrlPage extends Component{
 
 class WelcomeComponent extends Component{
     render(){
-        return (<div> welcome component</div>);
+        return (<div> welcome {this.props.match.params.name} </div>);
     }
 }
 
 class LoginComponent extends Component{
     constructor(props){
-        super(props);
+        super(props); 
         this.state={
             username:'type a user name',
             password:'',
@@ -47,7 +82,7 @@ class LoginComponent extends Component{
     }
     loginClicked = ()=>{
         if(this.state.username==='sina' && this.state.password==='pass' ){
-            this.props.history.push("/welcome");
+            this.props.history.push(`/welcome/${this.state.username}`);
             this.setState({showSuccessful:true});
             this.setState({showFailed:false});
             console.log('login successful');
