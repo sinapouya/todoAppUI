@@ -1,3 +1,10 @@
+article{
+  margin: 2.5em auto 0 auto;
+  border: 1px solid;
+  border-color: #ddd #aaa #aaa #ddd;
+  padding: 2em;
+  background: #fff;
+}
 .mainContent{
   font-family: 'Bitter', serif;
   display:flex;

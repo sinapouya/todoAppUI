@@ -35,8 +35,8 @@ class TodoesComponent extends Component{
         }        
     }
     render(){
-        return <div>
-            <table>
+        return <article>
+            <table className="ui celled table">
                 <thead>
                     <th>id</th>
                     <th>description</th>
@@ -58,7 +58,7 @@ class TodoesComponent extends Component{
                 </tbody>
                 
             </table>
-            </div>
+            </article>
     }
 }
 class HeaderComponent extends Component{
@@ -112,10 +112,10 @@ class HeaderComponent extends Component{
 }
 class logOutComponent extends Component{
     render(){
-        return  <>
+        return  <article>
                     <h1>you are logged out</h1>
                     <div className="container">Thank you for using our application</div>
-                </>
+                </article>
     }
 }
 class FooterComponent extends Component{
@@ -133,10 +133,10 @@ class BadUrlPage extends Component{
 
 class WelcomeComponent extends Component{
     render(){
-        return (<div> 
-            welcome {this.props.match.params.name} 
+        return (<article> 
+            welcome  {this.props.match.params.name} 
             to manage todoes click <Link to="/todoes" >here</Link>
-            </div>);
+            </article>);
     }
 }
 
@@ -175,30 +175,20 @@ class LoginComponent extends Component{
     }
     showFailMessage=()=>{
         if(this.state.showFailed===true){
-            return <div>login fail</div>;
+            return <div>invalid username or password</div>;
         }else{
             return <div></div>;
         }
     }
     render(){
         return (
-            // <div>
-            //     {this.showSuccessfulMessage()}
-            //     {this.showFailMessage()}
-                
-            //     User name :<input type="text" name="username" value={this.state.username}
-            //      onChange={this.handleChanged}/>
-            //     password <input type="password" name="password" value={this.state.password}
-            //      onChange={this.handleChanged}/>   
-            //     <button onClick={this.loginClicked}>Loggin</button>
-            // </div>
+            
             <div className="mainContent">
                 <div className="ui middle aligned center aligned grid">
                 <div class="column">
                     <h2 class="ui teal image header">
-                        {/* <img src="/public/logo.png" class="image"></img> */}
                         <div class="content">
-                        Log-in to your account
+                            Log-in to your account
                         </div>
                     </h2>
                 <form class="ui large form">
