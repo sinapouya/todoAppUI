@@ -1,3 +1,13 @@
+.mainContent{
+  font-family: 'Bitter', serif;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height: 85vh;
+  margin: auto;
+  
+}
 .footer{
   position: fixed;
   bottom: 0em;
@@ -9,6 +19,7 @@
 }
 .App {
   text-align: center;
+  
 }
 
 .App-logo {

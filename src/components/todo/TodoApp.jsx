@@ -144,7 +144,7 @@ class LoginComponent extends Component{
     constructor(props){
         super(props); 
         this.state={
-            username:'type a user name',
+            username:'',
             password:'',
             showSuccessful:false,
             showFailed:false
@@ -182,16 +182,60 @@ class LoginComponent extends Component{
     }
     render(){
         return (
-            <div>
-                {this.showSuccessfulMessage()}
-                {this.showFailMessage()}
+            // <div>
+            //     {this.showSuccessfulMessage()}
+            //     {this.showFailMessage()}
                 
-                User name :<input type="text" name="username" value={this.state.username}
-                 onChange={this.handleChanged}/>
-                password <input type="password" name="password" value={this.state.password}
-                 onChange={this.handleChanged}/>   
-                <button onClick={this.loginClicked}>Loggin</button>
-            </div>
+            //     User name :<input type="text" name="username" value={this.state.username}
+            //      onChange={this.handleChanged}/>
+            //     password <input type="password" name="password" value={this.state.password}
+            //      onChange={this.handleChanged}/>   
+            //     <button onClick={this.loginClicked}>Loggin</button>
+            // </div>
+            <div className="mainContent">
+                <div className="ui middle aligned center aligned grid">
+                <div class="column">
+                    <h2 class="ui teal image header">
+                        {/* <img src="/public/logo.png" class="image"></img> */}
+                        <div class="content">
+                        Log-in to your account
+                        </div>
+                    </h2>
+                <form class="ui large form">
+                    <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="username" value={this.state.username}
+                             placeholder="user name" onChange={this.handleChanged}></input>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" 
+                        onChange={this.handleChanged} value={this.state.password} placeholder="Password"></input>
+                        </div>
+                    </div>
+                        <div class="ui fluid large teal submit button" onClick={this.loginClicked}>
+                            Login
+                        </div>
+                    </div>
+            
+                    <div class="ui error message" style={{display: this.state.showFailed ?'block':'none'}}>
+                        {this.showSuccessfulMessage()}
+                        {this.showFailMessage()}
+                    </div>
+            
+                </form>
+            
+                <div class="ui message">
+                    New to us? <a href="#">Sign Up</a>
+                </div>
+                </div>
+          </div>
+        </div>
+            
         );
     }
 
