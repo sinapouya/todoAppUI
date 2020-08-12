@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
 import authenticationService from './AuthenticationService.js'
+import AuthenticationService from './AuthenticationService.js';
 class TodoApp extends Component{ 
     render(){
         return (
@@ -81,9 +82,12 @@ class HeaderComponent extends Component{
             case "login":
                 this.setState({homeActive:false,todoActive:false,loginActive:true,logoutActive:false});    
                 break;
-            case "logout":
+            case "logout":{
+                AuthenticationService.logout();
                 this.setState({homeActive:false,todoActive:false,loginActive:false,logoutActive:true});
                 break;
+            }
+                
             default:
                 this.setState({homeActive:true,todoActive:false,loginActive:false,logoutActive:false});
                 break;
@@ -97,7 +101,7 @@ class HeaderComponent extends Component{
             <Link name="home" to="/"
             onClick={this.toggleLink} className={`item ${this.state.homeActive?"active":"" }`} >Home Page</Link>
             <Link name="todo" to="/todoes"
-            onClick={this.toggleLink} className={`item ${this.state.todoActive?"active":"" }`}>to does</Link>
+            onClick={ this.toggleLink} className={`item ${this.state.todoActive?"active":"" }`}>to does</Link>
             
             <div className="right menu">
                 <Link name="login" to="/login"
