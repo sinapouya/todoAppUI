@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
 import authenticationService from './AuthenticationService.js'
 import AuthenticationService from './AuthenticationService.js';
+import MessageService from '../../api/todo/MessageService.js'; 
 class TodoApp extends Component{ 
     render(){
         return (
@@ -39,12 +40,11 @@ class TodoesComponent extends Component{
     render(){
         return <article>
             <table className="ui celled table">
-                <thead>
-                    <th>id</th>
-                    <th>description</th>
-                    <th>done</th>
-                    <th>target date</th>
-                </thead>
+                <thead>id</thead>
+                <thead>description</thead>
+                <thead>done</thead>
+                <thead>target date</thead>
+                
                 <tbody>
                         {
                             this.state.todoes.map(item=>{
@@ -137,10 +137,20 @@ class BadUrlPage extends Component{
 }
 
 class WelcomeComponent extends Component{
+    state={serverMessage:''}
+    executeFromServer = ()=>{
+        MessageService.executeGetMessage()
+        .then(response=>this.setState({serverMessage:response.data.message}))
+        // .catch()
+        // .finally()
+        // this.setState({serverMessage:''});
+    }
     render(){
         return (<article> 
             welcome  {this.props.match.params.name} 
             to manage todoes click <Link to="/todoes" >here</Link>
+            <button onClick={this.executeFromServer} className="ui button">get message from api</button>
+            message from api is {this.state.serverMessage}
             </article>);
     }
 }
@@ -190,41 +200,41 @@ class LoginComponent extends Component{
             
             <div className="mainContent">
                 <div className="ui middle aligned center aligned grid">
-                <div class="column">
-                    <h2 class="ui teal image header">
-                        <div class="content">
+                <div className="column">
+                    <h2 className="ui teal image header">
+                        <div className="content">
                             Log-in to your account
                         </div>
                     </h2>
-                <form class="ui large form">
-                    <div class="ui stacked segment">
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="user icon"></i>
+                <form className="ui large form">
+                    <div className="ui stacked segment">
+                    <div className="field">
+                        <div className="ui left icon input">
+                            <i className="user icon"></i>
                             <input type="text" name="username" value={this.state.username}
                              placeholder="user name" onChange={this.handleChanged}></input>
                         </div>
                     </div>
-                    <div class="field">
-                        <div class="ui left icon input">
-                        <i class="lock icon"></i>
+                    <div className="field">
+                        <div className="ui left icon input">
+                        <i className="lock icon"></i>
                         <input type="password" name="password" 
                         onChange={this.handleChanged} value={this.state.password} placeholder="Password"></input>
                         </div>
                     </div>
-                        <div class="ui fluid large teal submit button" onClick={this.loginClicked}>
+                        <div className="ui fluid large teal submit button" onClick={this.loginClicked}>
                             Login
                         </div>
                     </div>
             
-                    <div class="ui error message" style={{display: this.state.showFailed ?'block':'none'}}>
+                    <div className="ui error message" style={{display: this.state.showFailed ?'block':'none'}}>
                         {this.showSuccessfulMessage()}
                         {this.showFailMessage()}
                     </div>
             
                 </form>
             
-                <div class="ui message">
+                <div className="ui message">
                     New to us? <a href="#">Sign Up</a>
                 </div>
                 </div>
