@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
 import authenticationService from './AuthenticationService.js'
 import AuthenticationService from './AuthenticationService.js';
 import MessageService from '../../api/todo/MessageService.js'; 
+import TodosComponent from '../todo/TodosComponent'; 
 class TodoApp extends Component{ 
     render(){
         return (
@@ -14,7 +15,7 @@ class TodoApp extends Component{
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
                             <Route path="/welcome/:name" component={WelcomeComponent}/>
-                            <Route path="/todoes" component={TodoesComponent}/>
+                            <Route path="/todoes" component={TodosComponent}/>
                             <Route path="/logout" component={logOutComponent}/>
                             <Route component={BadUrlPage}/>
                         </Switch>
@@ -24,43 +25,6 @@ class TodoApp extends Component{
 
             </div>
         );
-    }
-}
-class TodoesComponent extends Component{
-    constructor(){
-        super();
-        this.state={
-            todoes:[
-                {id:1,description:'learn react',done:false,targetDate:new Date()},
-                {id:2,description:'learn bootstrap',done:false,targetDate:new Date()},
-                {id:3,description:'learn programming',done:false,targetDate:new Date()}
-            ]
-        }        
-    }
-    render(){
-        return <article>
-            <table className="ui celled table">
-                <thead>id</thead>
-                <thead>description</thead>
-                <thead>done</thead>
-                <thead>target date</thead>
-                
-                <tbody>
-                        {
-                            this.state.todoes.map(item=>{
-                                    return  <tr>
-                                                <td>{item.id}</td>
-                                                <td>{item.description}</td>
-                                                <td>{item.done.toString()}</td>
-                                                <td>{item.targetDate.toString()}</td>
-                                            </tr>
-                                    }
-                             )
-                        }
-                </tbody>
-                
-            </table>
-            </article>
     }
 }
 class HeaderComponent extends Component{
