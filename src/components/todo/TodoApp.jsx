@@ -3,7 +3,8 @@ import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom';
 import authenticationService from './AuthenticationService.js'
 import AuthenticationService from './AuthenticationService.js';
 import MessageService from '../../api/todo/MessageService.js'; 
-import TodosComponent from '../todo/TodosComponent'; 
+import TodosComponent from '../todo/TodosComponent';
+import TodoComponent from '../todo/TodoComponent'; 
 class TodoApp extends Component{ 
     render(){
         return (
@@ -15,6 +16,7 @@ class TodoApp extends Component{
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
                             <Route path="/welcome/:name" component={WelcomeComponent}/>
+                            <Route path="/todoes/:id" component={TodoComponent}/>
                             <Route path="/todoes" component={TodosComponent}/>
                             <Route path="/logout" component={logOutComponent}/>
                             <Route component={BadUrlPage}/>
