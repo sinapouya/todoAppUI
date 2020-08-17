@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import moment from 'moment';
 import { Button } from 'semantic-ui-react';
 class TodoComponent extends Component{
@@ -15,17 +15,41 @@ class TodoComponent extends Component{
     submitForm =(values)=>{
          console.log(values);   
     }
+    validate =(values)=>{
+        let errors = {};
+        if(!values.description){
+            errors.description='Please Enter a description value'
+        }else if(values.description.length<5){
+            errors.description='Please Enter at least 5 characters for description'
+        }
+        console.log('check date by moment');
+        console.log(values.targetDate);
+        let momentTargetDate= moment(values.targetDate);
+        
+        if(!momentTargetDate.isValid()){
+            errors.targetDate='Please Enter a valid target date';    
+        }
+        return errors;
+    }
     render(){
         let {id,description,targetDate} = this.state;
-    return <div className="mainContent">
+     return <div className="mainContent">
         
         <Formik initialValues={{description:description,
                                 targetDate:targetDate}}
-                onSubmit={this.submitForm}                >
+                onSubmit={this.submitForm}
+                validate={this.validate}
+                validateOnBlur={false}
+                validateOnChange={false}                >
             {
                 (props) => (
                     <Form className="formClass ui form" style={{border: 'antiquewhite'}}>
-                        <fieldset>
+                        <ErrorMessage name="description" component="div" 
+                            className="ui error message" style={{display:'block'}}/>
+                        <ErrorMessage name="targetDate" component="div" 
+                            className="ui error message" style={{display:'block'}}/>
+                                        
+                        <fieldset> 
                             <div className="field">
                                 <label>description</label>
                                 <Field type="text" name="description"></Field>
