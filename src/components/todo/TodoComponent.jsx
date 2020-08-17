@@ -3,18 +3,25 @@ import { Formik, Field, Form } from 'formik';
 import moment from 'moment';
 import { Button } from 'semantic-ui-react';
 class TodoComponent extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        console.log(this);
         this.state = {
-            id:22,
-            description:'description',
+            id:this.props.match.params.id,        
+            description:'description initial value',
             targetDate:moment(new Date()).format('YYYY-MM-DD')
         }
     }
+    submitForm =(values)=>{
+         console.log(values);   
+    }
     render(){
+        let {id,description,targetDate} = this.state;
     return <div className="mainContent">
-        {/* id is {this.props.match.params.id} */}
-        <Formik >
+        
+        <Formik initialValues={{description:description,
+                                targetDate:targetDate}}
+                onSubmit={this.submitForm}                >
             {
                 (props) => (
                     <Form className="formClass ui form" style={{border: 'antiquewhite'}}>
@@ -28,7 +35,7 @@ class TodoComponent extends Component{
                                 <Field type="date" name="targetDate"></Field>
                             </div>
                             <div>
-                                <button class="ui button" type="submit">Save</button>    
+                                <button className="ui button" type="submit">Save</button>    
                             </div>
                             
                         </fieldset>    
