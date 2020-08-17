@@ -5,6 +5,11 @@ article{
   padding: 2em;
   background: #fff;
 }
+.formClass{
+  width: 80vw;
+  height: 100%;
+
+}
 .mainContent{
   font-family: 'Bitter', serif;
   display:flex;
