@@ -28,7 +28,17 @@ class TodoComponent extends Component{
         }
     }
     submitForm =(values)=>{
-         console.log(values);   
+        let userName = authenticationService.getLoggedInUserName();
+        
+        todoService.updateTodo(userName,this.state.id,{
+            id: this.state.id,
+            userName:userName,
+            description:values.description,
+            targetDate:values.targetDate
+        }).then(()=>{
+            this.props.history.push(`/todoes`);
+        });
+         
     }
     validate =(values)=>{
         let errors = {};
