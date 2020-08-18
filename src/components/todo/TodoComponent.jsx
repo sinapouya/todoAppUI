@@ -1,14 +1,29 @@
 import React,{Component} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import moment from 'moment';
+import todoService from '../../api/todo/TodoService.js';
+import authenticationService from '../../components/todo/AuthenticationService.js';
 import { Button } from 'semantic-ui-react';
+
 class TodoComponent extends Component{
+    componentDidMount(){
+        let userName = authenticationService.getLoggedInUserName();
+        todoService.retriveTodo(userName,this.state.id)
+        .then(response =>{
+            let {id,description,targetDate}=response.data;
+            this.setState({
+                id:id,
+                description:description,
+                targetDate:moment(targetDate).format('YYYY-MM-DD')
+            });
+        })
+        
+    }
     constructor(props){
         super(props);
-        console.log(this);
         this.state = {
             id:this.props.match.params.id,        
-            description:'description initial value',
+            description:'',
             targetDate:moment(new Date()).format('YYYY-MM-DD')
         }
     }
@@ -40,7 +55,8 @@ class TodoComponent extends Component{
                 onSubmit={this.submitForm}
                 validate={this.validate}
                 validateOnBlur={false}
-                validateOnChange={false}                >
+                validateOnChange={false}
+                enableReinitialize={true}                >
             {
                 (props) => (
                     <Form className="formClass ui form" style={{border: 'antiquewhite'}}>

@@ -3,6 +3,9 @@ class TodoService{
     retriveAllTodos(userName){
         return axios.get(`http://todoappservice.herokuapp.com/users/${userName}/todos`)
     }
+    retriveTodo(userName,todoId){
+        return axios.get(`http://todoappservice.herokuapp.com/users/${userName}/todos/${todoId}`)
+    }
     deleteTodo(userName,todoId){
         return axios.delete(`https://todoappservice.herokuapp.com/users/${userName}/todos/${todoId}`);
     }
