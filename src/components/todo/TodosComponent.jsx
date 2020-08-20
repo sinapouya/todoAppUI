@@ -16,6 +16,11 @@ class TodosComponent extends Component{
             this.retriveAllTodos();
         });
     }
+    insertTodo(){
+        let userName = AuthenticationService.getLoggedInUserName();
+
+        this.props.history.push(`/todoes/-1`);
+    }
     updateTodo = (todoId)=>{
         let userName = AuthenticationService.getLoggedInUserName();
         console.log('update'+' user '+userName+' id '+todoId);
@@ -76,6 +81,9 @@ class TodosComponent extends Component{
                 </tbody>
                 
             </table>
+            <Button  onClick={()=>{this.insertTodo()}}
+                     className="positive ui button">add </Button>
+
             </article>
     }
 }

@@ -8,15 +8,20 @@ import { Button } from 'semantic-ui-react';
 class TodoComponent extends Component{
     componentDidMount(){
         let userName = authenticationService.getLoggedInUserName();
-        todoService.retriveTodo(userName,this.state.id)
-        .then(response =>{
-            let {id,description,targetDate}=response.data;
-            this.setState({
-                id:id,
-                description:description,
-                targetDate:moment(targetDate).format('YYYY-MM-DD')
-            });
-        })
+        if(this.state.id===-1){
+            return;
+        }else{
+            todoService.retriveTodo(userName,this.state.id)
+            .then(response =>{
+                let {id,description,targetDate}=response.data;
+                this.setState({
+                    id:id,
+                    description:description,
+                    targetDate:moment(targetDate).format('YYYY-MM-DD')
+                });
+            })
+        }
+        
         
     }
     constructor(props){
@@ -30,14 +35,25 @@ class TodoComponent extends Component{
     submitForm =(values)=>{
         let userName = authenticationService.getLoggedInUserName();
         
-        todoService.updateTodo(userName,this.state.id,{
-            id: this.state.id,
-            userName:userName,
-            description:values.description,
-            targetDate:values.targetDate
-        }).then(()=>{
-            this.props.history.push(`/todoes`);
-        });
+        if(this.state.id==-1){
+            todoService.createTodo(userName,{
+                id: -1,
+                userName:userName,
+                description:values.description,
+                targetDate:values.targetDate
+            }).then(()=>{
+                this.props.history.push(`/todoes`);
+            });
+        }else{
+            todoService.updateTodo(userName,this.state.id,{
+                id: this.state.id,
+                userName:userName,
+                description:values.description,
+                targetDate:values.targetDate
+            }).then(()=>{
+                this.props.history.push(`/todoes`);
+            });
+        } 
          
     }
     validate =(values)=>{
@@ -47,8 +63,6 @@ class TodoComponent extends Component{
         }else if(values.description.length<5){
             errors.description='Please Enter at least 5 characters for description'
         }
-        console.log('check date by moment');
-        console.log(values.targetDate);
         let momentTargetDate= moment(values.targetDate);
         
         if(!momentTargetDate.isValid()){
