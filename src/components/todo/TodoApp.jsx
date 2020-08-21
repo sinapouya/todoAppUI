@@ -106,17 +106,29 @@ class WelcomeComponent extends Component{
     state={serverMessage:''}
     executeFromServer = ()=>{
         MessageService.executeGetMessage()
-        .then(response=>this.setState({serverMessage:response.data.message}))
-        // .catch()
+        .then((response)=>this.handleSuccessfulMessage(response))
+        .catch(error=>this.handleFailureMessage(error));
         // .finally()
         // this.setState({serverMessage:''});
+    }
+    handleSuccessfulMessage=(response)=>{
+        this.setState({serverMessage:response.data.message})
+    }
+    handleFailureMessage=(error)=>{
+         let errorMessage='';
+         if(error.message){
+             this.setState({serverMessage:error.message});
+         }   
+         if(error.message.data){
+             this.setState({serverMessage:error.message.data});
+         }
     }
     render(){
         return (<article> 
             welcome  {this.props.match.params.name} 
-            to manage todoes click <Link to="/todoes" >here</Link>
+            to manage todoes click <Link to="/todoes" >here</Link><br/>
             <button onClick={this.executeFromServer} className="ui button">get message from api</button>
-            message from api is {this.state.serverMessage}
+            <br/>message from api is {this.state.serverMessage}
             </article>);
     }
 }
