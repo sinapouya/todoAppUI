@@ -148,16 +148,18 @@ class LoginComponent extends Component{
         this.setState({[event.target.name]:event.target.value});
     }
     loginClicked = ()=>{
-        if(this.state.username==='sina' && this.state.password==='pass' ){
-            authenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
+        authenticationService.executeJWTAuthenticateService(this.state.username,this.state.password)
+        .then((response)=>{
+            authenticationService.registerSuccessfulLoginForJWT(this.state.username,response.data.token);
             this.props.history.push(`/welcome/${this.state.username}`);
             this.setState({showSuccessful:true,showFailed:false});
-            console.log('login successful');
-        }else{
+            
+        }).catch(()=>{
             this.setState({showSuccessful:false});
             this.setState({showFailed:true});    
-            console.log('login failed');
-        }
+            
+        });
+
     }
     showSuccessfulMessage=()=>{
         if(this.state.showSuccessful===true){
