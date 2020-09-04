@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {URL} from '../../components/todo/Constants'
 class AuthenticationService{
     registerSuccessfulLogin(username,password){
         sessionStorage.setItem('authenticatedUser',username);
@@ -15,12 +16,12 @@ class AuthenticationService{
         sessionStorage.removeItem('authenticatedUser');
     }
     executeAuthService(username,password){
-        return axios.get('https://todoappservice.herokuapp.com/basicAuth',
+        return axios.get(`${URL}/basicAuth`,
         {headers:{authorization:this.createToken(username,password)}}
         );
     }
     executeJWTAuthenticateService(username,password){
-        return axios.post('https://todoappservice.herokuapp.com/authenticate',{
+        return axios.post(`${URL}/authenticate`,{
             username,
             password
         });

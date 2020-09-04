@@ -1,9 +1,9 @@
 import axios from "axios";
-
+import {URL} from '../../components/todo/Constants';
 class MessageService{
     executeGetMessage(){
         //console.log('executeGetMessage');
-        return axios.get("https://todoappservice.herokuapp.com/todo/v1.0.1/sayHello");
+        return axios.get(`${URL}/todo/v1.0.1/sayHello`);
         
 
     }
