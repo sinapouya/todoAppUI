@@ -35,9 +35,9 @@ class AuthenticationService{
     setupAxiosInterceptor(token){
         axios.interceptors.request.use(
             (config)=>{
-                if(this.getLoggedInUserName()==null){
+                // if(this.getLoggedInUserName()!=null){
                     config.headers.authorization = token;
-                } 
+                // } 
                 return config;
             }
             

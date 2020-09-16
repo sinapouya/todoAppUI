@@ -2,6 +2,7 @@
   "name": "fullstack-todo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://sinapouya.github.io/todoAppUI",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -18,9 +19,12 @@
   },
   "scripts": {
     "start": "PORT=4200 react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+    
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
