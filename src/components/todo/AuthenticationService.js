@@ -15,7 +15,7 @@ class AuthenticationService{
     logout(){
         sessionStorage.removeItem('authenticatedUser');
     }
-    executeAuthService(username,password){
+      executeAuthService(username,password){
         return axios.get(`${URL}/basicAuth`,
         {headers:{authorization:this.createToken(username,password)}}
         );
@@ -35,7 +35,7 @@ class AuthenticationService{
     setupAxiosInterceptor(token){
         axios.interceptors.request.use(
             (config)=>{
-                if(this.getLoggedInUserName){
+                if(this.getLoggedInUserName()==null){
                     config.headers.authorization = token;
                 } 
                 return config;
