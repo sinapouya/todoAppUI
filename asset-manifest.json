@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/todoAppUI/static/css/main.3557f9e1.chunk.css",
-    "main.js": "/todoAppUI/static/js/main.d0da6cf6.chunk.js",
-    "main.js.map": "/todoAppUI/static/js/main.d0da6cf6.chunk.js.map",
+    "main.css": "/todoAppUI/static/css/main.329aed94.chunk.css",
+    "main.js": "/todoAppUI/static/js/main.4423f45b.chunk.js",
+    "main.js.map": "/todoAppUI/static/js/main.4423f45b.chunk.js.map",
     "runtime-main.js": "/todoAppUI/static/js/runtime-main.62333e26.js",
     "runtime-main.js.map": "/todoAppUI/static/js/runtime-main.62333e26.js.map",
-    "static/css/2.581cace3.chunk.css": "/todoAppUI/static/css/2.581cace3.chunk.css",
-    "static/js/2.18ac87fc.chunk.js": "/todoAppUI/static/js/2.18ac87fc.chunk.js",
-    "static/js/2.18ac87fc.chunk.js.map": "/todoAppUI/static/js/2.18ac87fc.chunk.js.map",
+    "static/css/2.4420a062.chunk.css": "/todoAppUI/static/css/2.4420a062.chunk.css",
+    "static/js/2.d40c6c0a.chunk.js": "/todoAppUI/static/js/2.d40c6c0a.chunk.js",
+    "static/js/2.d40c6c0a.chunk.js.map": "/todoAppUI/static/js/2.d40c6c0a.chunk.js.map",
     "index.html": "/todoAppUI/index.html",
-    "precache-manifest.16edf30643783e1615c358c01af31055.js": "/todoAppUI/precache-manifest.16edf30643783e1615c358c01af31055.js",
+    "precache-manifest.8e6e565e7311498d00bf9ded54104e55.js": "/todoAppUI/precache-manifest.8e6e565e7311498d00bf9ded54104e55.js",
     "service-worker.js": "/todoAppUI/service-worker.js",
-    "static/css/2.581cace3.chunk.css.map": "/todoAppUI/static/css/2.581cace3.chunk.css.map",
-    "static/css/main.3557f9e1.chunk.css.map": "/todoAppUI/static/css/main.3557f9e1.chunk.css.map",
-    "static/js/2.18ac87fc.chunk.js.LICENSE.txt": "/todoAppUI/static/js/2.18ac87fc.chunk.js.LICENSE.txt",
+    "static/css/2.4420a062.chunk.css.map": "/todoAppUI/static/css/2.4420a062.chunk.css.map",
+    "static/css/main.329aed94.chunk.css.map": "/todoAppUI/static/css/main.329aed94.chunk.css.map",
+    "static/js/2.d40c6c0a.chunk.js.LICENSE.txt": "/todoAppUI/static/js/2.d40c6c0a.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/todoAppUI/static/media/outline-icons.ef60a4f6.woff",
     "static/media/logo.svg": "/todoAppUI/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.62333e26.js",
-    "static/css/2.581cace3.chunk.css",
-    "static/js/2.18ac87fc.chunk.js",
-    "static/css/main.3557f9e1.chunk.css",
-    "static/js/main.d0da6cf6.chunk.js"
+    "static/css/2.4420a062.chunk.css",
+    "static/js/2.d40c6c0a.chunk.js",
+    "static/css/main.329aed94.chunk.css",
+    "static/js/main.4423f45b.chunk.js"
   ]
 }
