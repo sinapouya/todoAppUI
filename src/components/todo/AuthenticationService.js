@@ -3,11 +3,11 @@ import {URL} from '../../components/todo/Constants'
 class AuthenticationService{
     registerSuccessfulLogin(username,password){
         sessionStorage.setItem('authenticatedUser',username);
-        this.setupAxiosInterceptor(this.createToken(username,password));
+        this.setupAxiosInterceptor(this.createToken(username,password),username);
     }
     registerSuccessfulLoginForJWT(username,token){
         sessionStorage.setItem('authenticatedUser',username);
-        this.setupAxiosInterceptor(this.createJWTToken(token));
+        this.setupAxiosInterceptor(this.createJWTToken(token),username);
     }
     getLoggedInUserName(){
         return sessionStorage.getItem('authenticatedUser');
@@ -32,12 +32,12 @@ class AuthenticationService{
     createJWTToken(token){
         return 'Bearer '+ token;
     }
-    setupAxiosInterceptor(token){
+    setupAxiosInterceptor(token,username){
         axios.interceptors.request.use(
             (config)=>{
-                // if(this.getLoggedInUserName()!=null){
+                if(this.getLoggedInUserName()==username){
                     config.headers.authorization = token;
-                // } 
+                } 
                 return config;
             }
             

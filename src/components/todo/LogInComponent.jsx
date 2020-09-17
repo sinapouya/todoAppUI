@@ -19,8 +19,8 @@ class LogInComponent extends Component{
         authenticationService.executeJWTAuthenticateService(this.state.username,this.state.password)
         .then((response)=>{
             sessionStorage.setItem('authenticatedUser',this.state.username);
-            authenticationService.setupAxiosInterceptor('Bearer '+ response.data.token);
-            //authenticationService.registerSuccessfulLoginForJWT(this.state.username,response.data.token);
+            //authenticationService.setupAxiosInterceptor('Bearer '+ response.data.token);
+            authenticationService.registerSuccessfulLoginForJWT(this.state.username,response.data.token);
             this.props.history.push(`/welcome/${this.state.username}`);
             this.setState({showSuccessful:true,showFailed:false});
             
